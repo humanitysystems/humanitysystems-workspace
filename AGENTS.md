@@ -55,7 +55,12 @@ All feature work must happen in a worktree (`worktrees/<repo>/<feature>`). Never
 When any skill produces code changes that need to be applied to a child repo, the agent must:
 
 1. Check if cwd is inside `repos/<repo>/` — if so, stop.
-2. Create a worktree: `wspace worktree add <repo> <feature-slug>` from the workspace root.
+2. Create a worktree from the workspace root, using the `git -C` form above:
+   ```sh
+   git -C repos/<repo> worktree add "$PWD/worktrees/<repo>/<feature-slug>" -b <feature-slug>
+   ```
+   There is no `wspace worktree` subcommand; `wspace` covers `check`, `init`,
+   `install`, `add`, `remove`, `path`, `update`, `workspaces`, and `validate`.
 3. `cd` into the worktree before making any edits.
 4. Never commit or push from inside `repos/<repo>/`.
 
