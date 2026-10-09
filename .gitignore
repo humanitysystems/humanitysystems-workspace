@@ -12,3 +12,6 @@ opencode.json
 
 # Agent scratch sessions
 session-*.md
+
+# Temp files.
+/tmp/
